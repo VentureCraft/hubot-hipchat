@@ -6,8 +6,7 @@
     "github",
     "hubot",
     "campfire",
-    "bot",
-    "ntwitter"
+    "bot"
   ],
   "description": "A simple helpful robot for your Company",
   "licenses": [
@@ -23,7 +22,8 @@
   "dependencies": {
     "hubot": ">= 2.5.1",
     "hubot-scripts": ">= 2.4.2",
-    "hubot-hipchat": "~2.5.1-4"
+    "hubot-hipchat": "~2.5.1-4",
+    "ntwitter": ">0.2.10"
   },
   "engines": {
     "node": ">= 0.8.21",
