@@ -5,7 +5,7 @@
 #   hubot salonstaff revenue - Shows the current months revenue so far
 
 monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
-var d = new Date();
+d = new Date();
 
 module.exports = (robot) ->
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
