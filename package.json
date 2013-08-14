@@ -1,30 +1,35 @@
 {
-  "name": "hubot-hipchat",
-  "version": "2.5.1-4",
-  "author": "HipChat <support@hipchat.com>",
-  "description": "A Hipchat adapter for Hubot",
-  "keywords": [
-    "hipchat",
+  "name":        "hosted-hubot",
+  "version":     "2.5.1",
+
+  "author":      "GitHub Inc.",
+
+  "keywords":    [
+    "github",
     "hubot",
-    "xmpp",
-    "chat",
+    "campfire",
     "bot"
   ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/hipchat/hubot-hipchat/raw/master/LICENSE"
-    }
-  ],
-  "repository": {
+
+  "description": "A simple helpful robot for your Company",
+
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://github.com/github/hubot/raw/master/LICENSE"
+  }],
+
+  "repository" : {
     "type": "git",
-    "url": "http://github.com/hipchat/hubot-hipchat.git"
+    "url":  "https://github.com/github/hubot.git"
   },
-  "license": "MIT",
-  "main": "./src/hipchat",
+
   "dependencies": {
-    "node-xmpp": "~0.3.2",
-    "underscore": "~1.4.4",
-    "rsvp": "~1.2.0"
+    "hubot":         ">= 2.5.1",
+    "hubot-scripts": ">= 2.4.2"
+  },
+
+  "engines": {
+    "node": ">= 0.8.x",
+    "npm":  ">= 1.1.x"
   }
 }
