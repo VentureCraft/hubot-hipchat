@@ -6,7 +6,8 @@
     "github",
     "hubot",
     "campfire",
-    "bot"
+    "bot",
+    "ntwitter"
   ],
   "description": "A simple helpful robot for your Company",
   "licenses": [
