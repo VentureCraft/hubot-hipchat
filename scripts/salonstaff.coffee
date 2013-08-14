@@ -18,5 +18,5 @@ module.exports = (robot) ->
         thisyear = thisyear.datapoints
 
         thisyear.forEach (month) ->
-          if link.month is monthNames[d.getMonth()]
-            msg.send thismonth.value
+          if month.title is monthNames[d.getMonth()]
+            msg.send "$" + month.value
