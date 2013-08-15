@@ -19,6 +19,8 @@
 
 sys = require 'sys' # Used for debugging
 
+zendesk_link = "https://salonstaff.zendesk.com/agent/#/"
+
 queries =
   unsolved: "search.json?query=\"status<solved\""
   open: "search.json?query=\"status:open\""
@@ -32,11 +34,9 @@ zendesk_request = (msg, url, handler) ->
   zendesk_password = "#{process.env.HUBOT_ZENDESK_PASSWORD}"
   auth = new Buffer("#{zendesk_user}:#{zendesk_password}").toString('base64')
   zendesk_url = "https://#{process.env.HUBOT_ZENDESK_SUBDOMAIN}.zendesk.com/api/v2"
-  msg.send "#{zendesk_url}/#{url}"
   msg.http("#{zendesk_url}/#{url}")
     .headers(Authorization: "Basic #{auth}", Accept: "application/json")
       .get() (err, res, body) ->
-        msg.send body
         if err
           msg.send "zendesk says: #{err}"
           return
@@ -72,21 +72,17 @@ module.exports = (robot) ->
   robot.respond /list (all )?tickets$/i, (msg) ->
     zendesk_request msg, queries.unsolved, (results) ->
       for result in results.results
-        msg.send "#{result.id} is #{result.status}: #{result.subject}"
+        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/tickets/#{result.id}"
 
   robot.respond /list new tickets$/i, (msg) ->
-    msg.send "attempting..."
     zendesk_request msg, queries.new, (results) ->
-      msg.send results
       for result in results.results
-        msg.send "#{result.id} is #{result.status}: #{result.subject}"
+        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/tickets/#{result.id}"
 
   robot.respond /list open tickets$/i, (msg) ->
-    msg.send "attempting..."
     zendesk_request msg, queries.open, (results) ->
-      msg.send results
       for result in results.results
-        msg.send "#{result.id} is #{result.status}: #{result.subject}"
+        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/tickets/#{result.id}"
 
   robot.respond /ticket ([\d]+)$/i, (msg) ->
     ticket_id = msg.match[1]
@@ -95,6 +91,7 @@ module.exports = (robot) ->
         msg.send result.description
         return
       message = "#{result.ticket.subject} ##{result.ticket.id} (#{result.ticket.status.toUpperCase()})"
+      message += "\n#{zendesk_link}/tickets/#{result.id}"
       message += "\nUpdated: #{result.ticket.updated_at}"
       message += "\nAdded: #{result.ticket.created_at}"
       message += "\nDescription:\n-------\n#{result.ticket.description}\n--------"
