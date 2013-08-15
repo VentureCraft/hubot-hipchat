@@ -8,6 +8,10 @@ monthNames = [ "January", "February", "March", "April", "May", "June", "July", "
 d = new Date();
 
 module.exports = (robot) ->
+
+  robot.respond /.*/i, (msg) ->
+    msg.send msg
+
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
       .get() (err, res, body) ->
