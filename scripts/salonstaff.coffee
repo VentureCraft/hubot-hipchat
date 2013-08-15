@@ -14,7 +14,8 @@ module.exports = (robot) ->
 
   robot.enter (msg) ->
     msg.send "hello #{msg.message.user.mention_name}!"
-    msg.send #{msg.room}
+    msg.send #{msg.message.room}
+    msg.send #{msg.message.room}
     msg.send "hai #{msg.message.user.mention_name}!"
     msg.messageRoom(msg.room, "1Oh, hello there #{msg.message.user.mention_name}!")
     robot.messageRoom(msg.room, "2Oh, hello there #{msg.message.user.mention_name}!")
