@@ -27,7 +27,8 @@
     "jsdom": "",
     "jquery": "",
     "underscore": ">= 1.2.1",
-    "underscore.string": ">= 1.1.6"
+    "underscore.string": ">= 1.1.6",
+    "async": ""
   },
   "engines": {
     "node": ">= 0.8.21",
