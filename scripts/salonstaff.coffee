@@ -12,13 +12,8 @@ module.exports = (robot) ->
 #  robot.leave (msg) ->
 #    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
 
-  robot.enter (msg) ->
-    msg.send "hello #{msg.message.user.mention_name}!"
-    msg.send #{msg.message.room}
-    msg.send #{msg.message.room}
-    msg.send "hai #{msg.message.user.mention_name}!"
-    msg.messageRoom(msg.room, "1Oh, hello there #{msg.message.user.mention_name}!")
-    robot.messageRoom(msg.room, "2Oh, hello there #{msg.message.user.mention_name}!")
+  robot.enter (response) ->
+    msg.send "oh hello mister #{response.message.user.mention_name}"
 #    msg.send "@#{robot.name} list tickets"
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
