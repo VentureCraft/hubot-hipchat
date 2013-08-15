@@ -9,8 +9,11 @@ d = new Date();
 
 module.exports = (robot) ->
 
+  robot.leave (msg) ->
+    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
+
   robot.enter (msg) ->
-    msg.send "#{msg.message.user.name}"
+    msg.send "Oh, hi #{msg.message.user.name}!"
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
