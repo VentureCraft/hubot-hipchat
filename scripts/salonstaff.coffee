@@ -14,10 +14,7 @@ module.exports = (robot) ->
 
   robot.enter (response) ->
     if response.message.room is "51042_salon_staff@conf.hipchat.com"
-      robot.send user: response.message.user, "oh mister #{response.message.user.mention_name}"
-      robot.send(response.message.user, "1oh mister #{response.message.user.mention_name}")
-      robot.pm(response.message.user, "3oh mister #{response.message.user.mention_name}")
-      response.reply "oh hello mister #{response.message.user.mention_name}"
+      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
       robot.emit("showRevenue", response)
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
@@ -35,4 +32,4 @@ module.exports = (robot) ->
 
         thisyear.forEach (month) ->
           if month.title is monthNames[d.getMonth()]
-            msg.reply "$" + month.value + " so far this " + month.title
+            robot.pm(msg.message.user, "$" + month.value + " so far this " + month.title)
