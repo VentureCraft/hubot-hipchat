@@ -14,6 +14,7 @@ module.exports = (robot) ->
 
   robot.enter (response) ->
     if response.message.room is "51042_salon_staff@conf.hipchat.com"
+      robot.send user: response.user, "oh mister #{response.message.user.mention_name}"
       response.reply "oh hello mister #{response.message.user.mention_name}"
       robot.emit("showRevenue", response)
 
