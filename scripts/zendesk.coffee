@@ -39,6 +39,7 @@ zendesk_request = (msg, url, handler) ->
           msg.send "zendesk says: #{err}"
           return
         content = JSON.parse(body)
+        msg.send body
         handler content
 
 # FIXME this works about as well as a brick floats
