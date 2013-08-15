@@ -20,7 +20,7 @@ module.exports = (robot) ->
     robot.emit("showRevenue", msg)
 
 
-  robot.on "showRevenue"'", (msg) ->
+  robot.on "showRevenue", (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
       .get() (err, res, body) ->
         data = JSON.parse(body)
