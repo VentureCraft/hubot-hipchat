@@ -73,13 +73,16 @@ module.exports = (robot) ->
         msg.send "#{result.id} is #{result.status}: #{result.subject}"
 
   robot.respond /list new tickets$/i, (msg) ->
+    msg.send "attempting..."
     zendesk_request msg, queries.new, (results) ->
       msg.send results
       for result in results.results
         msg.send "#{result.id} is #{result.status}: #{result.subject}"
 
   robot.respond /list open tickets$/i, (msg) ->
+    msg.send "attempting..."
     zendesk_request msg, queries.open, (results) ->
+      msg.send results
       for result in results.results
         msg.send "#{result.id} is #{result.status}: #{result.subject}"
 
