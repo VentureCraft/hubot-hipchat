@@ -35,11 +35,11 @@ zendesk_request = (msg, url, handler) ->
   msg.http("#{zendesk_url}/#{url}")
     .headers(Authorization: "Basic #{auth}", Accept: "application/json")
       .get() (err, res, body) ->
+        msg.send body
         if err
           msg.send "zendesk says: #{err}"
           return
         content = JSON.parse(body)
-        msg.send body
         handler content
 
 # FIXME this works about as well as a brick floats
