@@ -9,6 +9,9 @@ d = new Date();
 
 module.exports = (robot) ->
 
+  robot.enter (msg) ->
+    msg.send "#{msg.message.user.name}"
+
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
       .get() (err, res, body) ->
