@@ -16,8 +16,6 @@ module.exports = (robot) ->
     if response.message.room is "51042_salon_staff@conf.hipchat.com"
       response.reply "oh hello mister #{response.message.user.mention_name}"
       robot.emit("showRevenue", response)
-      robot.messageRoom("51042_salon_staff@conf.hipchat.com", "1 hell yeah")
-      response.messageRoom("51042_salon_staff@conf.hipchat.com", "2 hell yeah")
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
     robot.emit("showRevenue", msg)
