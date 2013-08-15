@@ -14,6 +14,9 @@ module.exports = (robot) ->
 
   robot.enter (response) ->
     response.reply "oh hello mister #{response.message.user.mention_name}"
+    response.reply "#{response}"
+    response.reply #{response}
+    response.reply response
     robot.emit("showRevenue", response)
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
