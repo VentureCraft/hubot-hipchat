@@ -25,7 +25,9 @@
     "hubot-hipchat": "~2.5.1-4",
     "ntwitter": ">=0.5.0",
     "jsdom": "",
-    "jquery": ""
+    "jquery": "",
+    "underscore": ">= 1.2.1",
+    "underscore.string": ">= 1.1.6"
   },
   "engines": {
     "node": ">= 0.8.21",
