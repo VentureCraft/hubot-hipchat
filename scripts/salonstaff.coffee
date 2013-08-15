@@ -14,13 +14,13 @@ module.exports = (robot) ->
 
   robot.enter (response) ->
     response.send "oh hello mister #{response.message.user.mention_name}"
-    robot.emit('showRevenue', msg)
+    robot.emit("showRevenue", msg)
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
-    robot.emit('showRevenue', msg)
+    robot.emit("showRevenue", msg)
 
 
-  showRevenue = (msg) ->
+  robot.on "showRevenue"'", (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
       .get() (err, res, body) ->
         data = JSON.parse(body)
