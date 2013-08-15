@@ -13,7 +13,7 @@ module.exports = (robot) ->
 #    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
 
   robot.enter (response) ->
-    response.send "oh hello mister #{response.message.user.mention_name}"
+    response.reply "oh hello mister #{response.message.user.mention_name}"
     robot.emit("showRevenue", response)
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
@@ -31,4 +31,4 @@ module.exports = (robot) ->
 
         thisyear.forEach (month) ->
           if month.title is monthNames[d.getMonth()]
-            msg.send "$" + month.value + " so far this " + month.title
+            msg.reply "$" + month.value + " so far this " + month.title
