@@ -19,7 +19,7 @@
 
 sys = require 'sys' # Used for debugging
 
-zendesk_link = "https://salonstaff.zendesk.com/agent/#/"
+zendesk_link = "https://#{process.env.HUBOT_ZENDESK_SUBDOMAIN}.zendesk.com"
 
 queries =
   unsolved: "search.json?query=\"status<solved\""
@@ -72,17 +72,17 @@ module.exports = (robot) ->
   robot.respond /list (all )?tickets$/i, (msg) ->
     zendesk_request msg, queries.unsolved, (results) ->
       for result in results.results
-        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/tickets/#{result.id}"
+        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/agent/#/tickets/#{result.id}"
 
   robot.respond /list new tickets$/i, (msg) ->
     zendesk_request msg, queries.new, (results) ->
       for result in results.results
-        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/tickets/#{result.id}"
+        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/agent/#/tickets/#{result.id}"
 
   robot.respond /list open tickets$/i, (msg) ->
     zendesk_request msg, queries.open, (results) ->
       for result in results.results
-        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/tickets/#{result.id}"
+        msg.send "#{result.id} is #{result.status}: #{result.subject} #{zendesk_link}/agent/#/tickets/#{result.id}"
 
   robot.respond /ticket ([\d]+)$/i, (msg) ->
     ticket_id = msg.match[1]
@@ -91,7 +91,7 @@ module.exports = (robot) ->
         msg.send result.description
         return
       message = "#{result.ticket.subject} ##{result.ticket.id} (#{result.ticket.status.toUpperCase()})"
-      message += "\n#{zendesk_link}/tickets/#{result.id}"
+      message += "\n#{zendesk_link}/agent/#/tickets/#{ticket_id}"
       message += "\nUpdated: #{result.ticket.updated_at}"
       message += "\nAdded: #{result.ticket.created_at}"
       message += "\nDescription:\n-------\n#{result.ticket.description}\n--------"
