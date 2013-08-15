@@ -11,6 +11,7 @@ module.exports = (robot) ->
 
   robot.leave (msg) ->
     msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
+    msg.send "@#{robot.name} list tickets"
 
   robot.enter (msg) ->
     msg.send "Oh, hi #{msg.message.user.name}!"
