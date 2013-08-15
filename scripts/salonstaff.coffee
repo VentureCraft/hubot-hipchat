@@ -13,7 +13,7 @@ module.exports = (robot) ->
 #    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
 
   robot.enter (response) ->
-    msg.send "oh hello mister #{response.message.user.mention_name}"
+    response.send "oh hello mister #{response.message.user.mention_name}"
 #    msg.send "@#{robot.name} list tickets"
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
