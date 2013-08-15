@@ -13,11 +13,11 @@ module.exports = (robot) ->
 #    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
 
   robot.enter (response) ->
-    response.reply "oh hello mister #{response.message.user.mention_name}"
-    response.reply "1 " + response.room
-    response.reply "2 " + response.message.room
-    response.reply "3 " + response.message.user.room
-    robot.emit("showRevenue", response)
+    if response.message.room is "51042_salon_staff@conf.hipchat.com"
+      response.reply "oh hello mister #{response.message.user.mention_name}"
+      robot.emit("showRevenue", response)
+      robot.messageRoom("51042_salon_staff@conf.hipchat.com", "1 hell yeah")
+      response.messageRoom("51042_salon_staff@conf.hipchat.com", "2 hell yeah")
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
     robot.emit("showRevenue", msg)
