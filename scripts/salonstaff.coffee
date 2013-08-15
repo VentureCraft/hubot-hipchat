@@ -14,9 +14,13 @@ module.exports = (robot) ->
 
   robot.enter (response) ->
     response.send "oh hello mister #{response.message.user.mention_name}"
-#    msg.send "@#{robot.name} list tickets"
+    robot.emit('showRevenue', msg)
 
   robot.respond /(salonstaff)( revenue)/i, (msg) ->
+    robot.emit('showRevenue', msg)
+
+
+  showRevenue = (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
       .get() (err, res, body) ->
         data = JSON.parse(body)
@@ -27,4 +31,4 @@ module.exports = (robot) ->
 
         thisyear.forEach (month) ->
           if month.title is monthNames[d.getMonth()]
-            msg.send "$" + month.value
+            msg.send "$" + month.value + " so far this " + month.title
