@@ -26,7 +26,7 @@ module.exports = (robot) ->
   robot.enter (response) ->
     if response.message.user.mention_name is "betty"
       return
-    randIndex = Math.floor((Math.random()*quotes.length)+1)
+    randIndex = Math.floor((Math.random()*welcome_messages.length)+1)
     robot.messageRoom(response.message.room, "#{welcome_messages[randIndex - 1]} #{response.message.user.mention_name}")
     if response.message.room is "51042_salon_staff@conf.hipchat.com"
       robot.emit("showRevenue", response)
