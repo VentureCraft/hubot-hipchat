@@ -7,17 +7,29 @@
 monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
 d = new Date();
 
+welcome_messages = [
+  "oh hello mister",
+  "glad you could join us",
+  "well it if isn't"
+  "sup",
+  "hey",
+  "welcome back",
+  "hows tricks"
+  "hey everyone... look... it's"
+]
+
 module.exports = (robot) ->
 
 #  robot.leave (msg) ->
 #    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
 
   robot.enter (response) ->
+    robot.messageRoom(response.message.room, "#{welcome_messages.rand} #{response.message.user.mention_name}")
     if response.message.room is "51042_salon_staff@conf.hipchat.com"
-      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
       robot.emit("showRevenue", response)
+#      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
 
-  robot.respond /(salonstaff)( revenue)/i, (msg) ->
+  robot.respond /(revenue)/i, (msg) ->
     robot.emit("showRevenue", msg)
 
 
