@@ -24,7 +24,9 @@ module.exports = (robot) ->
 #    msg.send "Bye bye #{msg.message.user.name}, I'll miss you :("
 
   robot.enter (response) ->
-    robot.messageRoom(response.message.room, "#{welcome_messages.rand} #{response.message.user.mention_name}")
+    if response.message.user.mention_name is "betty"
+      return
+    robot.messageRoom(response.message.room, "#{welcome_messages.random} #{response.message.user.mention_name}")
     if response.message.room is "51042_salon_staff@conf.hipchat.com"
       robot.emit("showRevenue", response)
 #      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
