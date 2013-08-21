@@ -186,7 +186,7 @@ class HipChat extends Adapter
       agent  : false
       host   : host
       port   : 443
-      path   : path += "?auth_token=#{@options.token}&color=yellow"
+      path   : path += "?auth_token=#{@options.token}"
       method : method
       headers: headers
 
