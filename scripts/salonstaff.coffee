@@ -36,6 +36,8 @@ module.exports = (robot) ->
   robot.hear /(revenue\?)/i, (msg) ->
     robot.emit("showRevenue", msg)
 
+  robot.hear /(thanks betty\)/i, (msg) ->
+    msg.send("you're welcome!")
 
   robot.on "showRevenue", (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
