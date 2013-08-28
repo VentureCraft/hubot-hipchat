@@ -47,7 +47,7 @@ module.exports = (robot) ->
   robot.hear /(revenue\?)/i, (msg) ->
     robot.emit("showRevenue", msg)
 
-  robot.hear /(thanks betty\)/i, (msg) ->
+  robot.hear /(thanks betty)/i, (msg) ->
     randIndex = Math.floor((Math.random()*welcome_messages.length)+1)
     msg.send "#{youre_welcome_messages[randIndex - 1]} #{response.message.user.mention_name}"
 
