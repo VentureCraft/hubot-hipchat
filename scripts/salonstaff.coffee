@@ -18,6 +18,17 @@ welcome_messages = [
   "hey everyone... look... it's"
 ]
 
+youre_welcome_messages = [
+  "that's ok",
+  "pfffft, it was nothing",
+  "my pleasure",
+  "no, thank you",
+  "boobs",
+  "get back to work",
+  "all in a days work",
+  "damn right"
+]
+
 module.exports = (robot) ->
 
 #  robot.leave (msg) ->
@@ -37,7 +48,8 @@ module.exports = (robot) ->
     robot.emit("showRevenue", msg)
 
   robot.hear /(thanks betty\)/i, (msg) ->
-    msg.send("you're welcome")
+    randIndex = Math.floor((Math.random()*welcome_messages.length)+1)
+    msg.send "#{youre_welcome_messages[randIndex - 1]} #{response.message.user.mention_name}"
 
   robot.on "showRevenue", (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
