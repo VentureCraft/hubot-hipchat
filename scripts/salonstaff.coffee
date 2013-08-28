@@ -49,7 +49,7 @@ module.exports = (robot) ->
 
   robot.hear /(thanks betty)/i, (msg) ->
     randIndex = Math.floor((Math.random()*welcome_messages.length)+1)
-    msg.send "#{youre_welcome_messages[randIndex - 1]} #{response.message.user.mention_name}"
+    msg.send "#{youre_welcome_messages[randIndex - 1]} #{msg.message.user.mention_name}"
 
   robot.on "showRevenue", (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
