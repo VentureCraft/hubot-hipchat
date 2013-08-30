@@ -28,7 +28,8 @@
     "jquery": "",
     "underscore": ">= 1.2.1",
     "underscore.string": ">= 1.1.6",
-    "async": ""
+    "async": "",
+    "cleverbot-node": "0.1.1"
   },
   "engines": {
     "node": ">= 0.8.21",
