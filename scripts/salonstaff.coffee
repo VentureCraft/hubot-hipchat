@@ -56,9 +56,9 @@ module.exports = (robot) ->
       msg.send('Sync complete')
 
   robot.hear "xero overdue", (msg) ->
-    msg.send("finding overdue invoices from xero...")
+    msg.send("Finding overdue invoices from xero...")
     msg.http("http://www.salonstaff.com.au/cron/xerocron/findoverdue").get() (err, res, body) ->
-      msg.send('Sync complete')
+      msg.send('Overdue invoices updated')
 
   robot.hear "cm sync", (msg) ->
     msg.send("Syncing campaign monitor salon owners list...")
@@ -66,12 +66,12 @@ module.exports = (robot) ->
       msg.send('Sync complete')
 
   robot.hear "intercom sync", (msg) ->
-    msg.send("syncing intercom...")
+    msg.send("Syncing intercom...")
     msg.http("http://www.salonstaff.com.au/cron/cron/update_intercom").get() (err, res, body) ->
       msg.send('Sync complete')
 
   robot.hear "zendesk sync", (msg) ->
-    msg.send("sycing accounts with zendesk...")
+    msg.send("Sycing accounts with zendesk...")
     msg.http("http://www.salonstaff.com.au/cron/zendeskcron/synk").get() (err, res, body) ->
       msg.send('Sync complete')
 
