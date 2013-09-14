@@ -3,6 +3,9 @@
 #
 # Commands:
 #   revenue? - Shows the current months revenue so far
+#   xero update
+#   cm sync
+#   zendesk sync
 
 monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
 d = new Date();
@@ -44,12 +47,33 @@ module.exports = (robot) ->
 #      robot.emit("showRevenue", response)
 #      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
 
+
+  robot.hear "xero overdue", (msg) ->
+    msg.http("http://www.salonstaff.com.au/cron/xerocron/findoverdue")
+      .get() (err, res, body) ->
+        msg.send("finding overdue invoices from xero...")
+
+  robot.hear "cm sync", (msg) ->
+    msg.http("http://www.salonstaff.com.au/cron/cron/update_campaign_monitor")
+      .get() (err, res, body) ->
+        msg.send("syncing campaign monitor salon owners list...")
+
+  robot.hear "zendesk sync", (msg) ->
+    msg.http("http://www.salonstaff.com.au/cron/zendeskcron/synk")
+      .get() (err, res, body) ->
+        msg.send("sycing accounts with zendesk...")
+
+
+
+
   robot.hear /(revenue\?)/i, (msg) ->
     robot.emit("showRevenue", msg)
+
 
   robot.hear /(thanks betty)/i, (msg) ->
     randIndex = Math.floor((Math.random()*welcome_messages.length)+1)
     msg.send "#{youre_welcome_messages[randIndex - 1]} #{msg.message.user.mention_name}"
+
 
   robot.on "showRevenue", (msg) ->
     msg.http("http://www.salonstaff.com.au/panic/profit_graph")
