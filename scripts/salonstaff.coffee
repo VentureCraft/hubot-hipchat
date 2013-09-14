@@ -49,19 +49,18 @@ module.exports = (robot) ->
 
 
   robot.hear "xero overdue", (msg) ->
-    msg.http("http://www.salonstaff.com.au/cron/xerocron/findoverdue")
-      .get() (err, res, body) ->
-        msg.send("finding overdue invoices from xero...")
+    msg.send("finding overdue invoices from xero...")
+    msg.http("http://www.salonstaff.com.au/cron/xerocron/findoverdue").get()
+
 
   robot.hear "cm sync", (msg) ->
-    msg.http("http://www.salonstaff.com.au/cron/cron/update_campaign_monitor")
-      .get() (err, res, body) ->
-        msg.send("syncing campaign monitor salon owners list...")
+    msg.send("syncing campaign monitor salon owners list...")
+    msg.http("http://www.salonstaff.com.au/cron/cron/update_campaign_monitor").get()
+
 
   robot.hear "zendesk sync", (msg) ->
-    msg.http("http://www.salonstaff.com.au/cron/zendeskcron/synk")
-      .get() (err, res, body) ->
-        msg.send("sycing accounts with zendesk...")
+    msg.send("sycing accounts with zendesk...")
+    msg.http("http://www.salonstaff.com.au/cron/zendeskcron/synk").get()
 
 
 
