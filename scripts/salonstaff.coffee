@@ -3,9 +3,10 @@
 #
 # Commands:
 #   revenue? - Shows the current months revenue so far
-#   xero update
-#   cm sync
-#   zendesk sync
+#   xero overdue - Sync overdue invoices with seek
+#   cm sync - Syncs the campaign monitor salon owners list
+#   zendesk sync - Syncs new zendesk accounts
+#   intercom sync - Syncs all users with intercom
 
 monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
 d = new Date();
@@ -50,17 +51,23 @@ module.exports = (robot) ->
 
   robot.hear "xero overdue", (msg) ->
     msg.send("finding overdue invoices from xero...")
-    msg.http("http://www.salonstaff.com.au/cron/xerocron/findoverdue").get()
-
+    msg.http("http://www.salonstaff.com.au/cron/xerocron/findoverdue").get() (err, res, body) ->
+      msg.send('Sync complete')
 
   robot.hear "cm sync", (msg) ->
-    msg.send("syncing campaign monitor salon owners list...")
-    msg.http("http://www.salonstaff.com.au/cron/cron/update_campaign_monitor").get()
+    msg.send("Syncing campaign monitor salon owners list...")
+    msg.http("http://www.salonstaff.com.au/cron/cron/update_campaign_monitor").get() (err, res, body) ->
+      msg.send('Sync complete')
 
+  robot.hear "intercom sync", (msg) ->
+    msg.send("syncing intercom...")
+    msg.http("http://www.salonstaff.com.au/cron/cron/update_intercom").get() (err, res, body) ->
+      msg.send('Sync complete')
 
   robot.hear "zendesk sync", (msg) ->
     msg.send("sycing accounts with zendesk...")
-    msg.http("http://www.salonstaff.com.au/cron/zendeskcron/synk").get()
+    msg.http("http://www.salonstaff.com.au/cron/zendeskcron/synk").get() (err, res, body) ->
+      msg.send('Sync complete')
 
 
 
