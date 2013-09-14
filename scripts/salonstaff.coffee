@@ -5,6 +5,7 @@
 #   revenue? - Shows the current months revenue so far
 #   xero overdue - Sync overdue invoices with seek
 #   cm sync - Syncs the campaign monitor salon owners list
+#   seek sync - Sync jobs with seek
 #   zendesk sync - Syncs new zendesk accounts
 #   intercom sync - Syncs all users with intercom
 
@@ -48,6 +49,11 @@ module.exports = (robot) ->
 #      robot.emit("showRevenue", response)
 #      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
 
+
+  robot.hear "seek sync", (msg) ->
+    msg.send("Syncing seek jobs...")
+    msg.http("http://www.salonstaff.com.au/cron/seek/fastlane").get() (err, res, body) ->
+      msg.send('Sync complete')
 
   robot.hear "xero overdue", (msg) ->
     msg.send("finding overdue invoices from xero...")
