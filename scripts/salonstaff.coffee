@@ -3,6 +3,7 @@
 #
 # Commands:
 #   revenue? - Shows the current months revenue so far
+#   salonstaff jobs? - Show how many current live jobs we have on Salon Staff
 #   xero overdue - Sync overdue invoices with seek
 #   cm sync - Syncs the campaign monitor salon owners list
 #   seek sync - Sync jobs with seek
@@ -49,9 +50,9 @@ module.exports = (robot) ->
 #      robot.emit("showRevenue", response)
 #      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
 
-  robot.hear "live jobs?", (msg) ->
+  robot.hear "salonstaff jobs?", (msg) ->
     msg.http("http://www.salonstaff.com.au/betty/liveJobCount").get() (err, res, body) ->
-      msg.send(body + ' jobs currently live')
+      msg.send(body + ' jobs currently live on SalonStaff')
 
   robot.hear "seek sync", (msg) ->
     msg.send("Syncing seek jobs...")
