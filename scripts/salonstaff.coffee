@@ -49,6 +49,9 @@ module.exports = (robot) ->
 #      robot.emit("showRevenue", response)
 #      robot.pm(response.message.user, "oh hello mister #{response.message.user.mention_name}")
 
+  robot.hear "live jobs?", (msg) ->
+    msg.http("http://www.salonstaff.com.au/betty/liveJobCount").get() (err, res, body) ->
+      msg.send(body + ' jobs currently live')
 
   robot.hear "seek sync", (msg) ->
     msg.send("Syncing seek jobs...")
